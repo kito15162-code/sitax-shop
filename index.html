@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0a">
+<title>SITAX SHOP</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Loading screen -->
+<section class="splash" id="splash" aria-label="Loading">
+  <div class="sp-bg"></div>
+  <div class="sp-stage">
+    <svg class="sp-ring" viewBox="0 0 100 100" aria-hidden="true"><path d="M12 9 Q50 19 88 9 Q98 8 98 20 V84 Q98 95 87 95 H13 Q2 95 2 84 V20 Q2 8 12 9 Z"/></svg>
+    <svg class="sp-tile" viewBox="0 0 100 100" aria-hidden="true"><path d="M12 9 Q50 19 88 9 Q98 8 98 20 V84 Q98 95 87 95 H13 Q2 95 2 84 V20 Q2 8 12 9 Z"/></svg>
+  </div>
+  <div class="sp-flood sp-band"></div>
+  <div class="sp-flood sp-main"></div>
+  <div class="sp-word"><span class="sp-s">S</span><span class="sp-rest">itax</span></div>
+</section>
+
+<!-- Shared gold gradient used by every icon stroke -->
+<svg class="defs" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="goldGrad" gradientUnits="userSpaceOnUse" x1="3" y1="2" x2="21" y2="22">
+      <stop offset="0" stop-color="#fff0b0"/>
+      <stop offset="0.45" stop-color="#e2bf4a"/>
+      <stop offset="1" stop-color="#b8921f"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<div class="app">
+
+  <header class="header">
+    <div class="logo"><span class="logo-nova">SITAX</span> <span class="logo-shop">SHOP</span></div>
+    <div class="header-actions">
+      <button class="icon-btn" id="cartBtn" aria-label="Cart">
+        <span class="badge hidden" id="cartBadge">0</span>
+        <svg class="ic ic-bag" viewBox="0 0 24 24"><path class="tone body" d="M5 8h14l-1 12H6L5 8z"/><path class="handle" d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+      </button>
+      <button class="icon-btn" id="profileBtn" aria-label="Profile">
+        <svg class="ic ic-user" viewBox="0 0 24 24"><circle class="tone head" cx="12" cy="8" r="4"/><path class="tone shoulders" d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- HOME -->
+    <section class="view active" id="view-home">
+      <div class="search">
+        <svg class="ic ic-search" viewBox="0 0 24 24"><circle class="tone lens" cx="11" cy="11" r="7"/><path class="grip" d="M20 20l-3.5-3.5"/></svg>
+        <input type="search" id="searchInput" placeholder="Search products..." autocomplete="off">
+      </div>
+
+      <div class="hero">
+        <p class="hero-eyebrow">WELCOME TO SITAX</p>
+        <h1 class="hero-title">Discover Your Style</h1>
+        <p class="hero-text">Curated pieces for everyday luxury.</p>
+      </div>
+
+      <div class="chips" id="chips"></div>
+
+      <div class="section-head">
+        <h2 class="section-title">Featured Products</h2>
+        <select class="sort" id="sortSelect" aria-label="Sort products">
+          <option value="featured">Featured</option>
+          <option value="low">Price: Low to High</option>
+          <option value="high">Price: High to Low</option>
+          <option value="rating">Top Rated</option>
+        </select>
+      </div>
+      <div class="grid" id="productGrid"></div>
+      <p class="empty hidden" id="homeEmpty">No products found.</p>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="view" id="view-categories">
+      <h2 class="section-title">Categories</h2>
+      <div class="cat-list" id="catList"></div>
+    </section>
+
+    <!-- WISHLIST -->
+    <section class="view" id="view-wishlist">
+      <h2 class="section-title">Wishlist</h2>
+      <div class="grid" id="wishGrid"></div>
+      <p class="empty hidden" id="wishEmpty">Your wishlist is empty.<br>Tap the heart on any product to save it.</p>
+    </section>
+
+    <!-- PROFILE -->
+    <section class="view" id="view-profile">
+      <h2 class="section-title">Profile</h2>
+      <div class="profile-card">
+        <div class="avatar">
+          <svg class="ic ic-user" viewBox="0 0 24 24"><circle class="tone head" cx="12" cy="8" r="4"/><path class="tone shoulders" d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        </div>
+        <div>
+          <p class="profile-name" id="profileName">Guest</p>
+          <p class="profile-sub" id="profileSub">Welcome to SITAX SHOP</p>
+        </div>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><span class="stat-num" id="wishCount">0</span><span class="stat-label">Wishlist</span></div>
+        <div class="stat"><span class="stat-num" id="orderCount">0</span><span class="stat-label">Orders</span></div>
+        <div class="stat"><span class="stat-num" id="prodCount">0</span><span class="stat-label">Products</span></div>
+      </div>
+
+      <h2 class="section-title">My Orders</h2>
+      <div class="order-list" id="orderList"></div>
+      <p class="empty hidden" id="orderEmpty">No orders yet.<br>Your orders will show up here.</p>
+
+      <button class="btn-outline" id="logoutBtn">SIGN OUT</button>
+    </section>
+
+  </main>
+
+  <nav class="nav" aria-label="Main navigation">
+    <span class="nav-bubble" id="navBubble"></span>
+    <button class="nav-item active" data-view="home">
+      <svg class="ic ic-home" viewBox="0 0 24 24"><path class="roof" d="M3 11l9-8 9 8"/><path class="tone body" d="M5 10v10h14V10"/></svg>
+      <span>HOME</span>
+    </button>
+    <button class="nav-item" data-view="categories">
+      <svg class="ic ic-grid" viewBox="0 0 24 24"><rect class="tone" x="3" y="3" width="7" height="7" rx="2"/><rect class="tone" x="14" y="3" width="7" height="7" rx="2"/><rect class="tone" x="3" y="14" width="7" height="7" rx="2"/><rect class="tone" x="14" y="14" width="7" height="7" rx="2"/></svg>
+      <span>CATEGORIES</span>
+    </button>
+    <button class="nav-item" data-view="wishlist">
+      <svg class="ic ic-heart" viewBox="0 0 24 24"><path class="tone" d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/></svg>
+      <span>WISHLIST</span>
+    </button>
+    <button class="nav-item" data-view="profile">
+      <svg class="ic ic-user" viewBox="0 0 24 24"><circle class="tone head" cx="12" cy="8" r="4"/><path class="tone shoulders" d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+      <span>PROFILE</span>
+    </button>
+  </nav>
+
+  <!-- Detail and cart sheets -->
+  <section class="sheet" id="detailSheet"></section>
+  <section class="sheet" id="cartSheet"></section>
+  <section class="sheet" id="checkoutSheet"></section>
+  <section class="sheet" id="orderSheet"></section>
+  <div class="toast" id="toast"></div>
+
+  <!-- Login screen -->
+  <section class="auth" id="auth">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <div class="auth-inner">
+      <div class="auth-logo" aria-label="SITAX SHOP">
+        <span class="auth-nova">SITAX</span> <span class="auth-shop">SHOP</span>
+      </div>
+      <div class="auth-line"></div>
+      <p class="auth-tag">Curated pieces for everyday luxury.</p>
+
+      <div class="auth-card" id="authCard">
+        <div class="auth-tabs stag" id="authTabs" style="--d:.7s">
+          <button class="auth-tab active" data-mode="signin">SIGN IN</button>
+          <button class="auth-tab" data-mode="signup">CREATE ACCOUNT</button>
+          <span class="auth-tab-line"></span>
+        </div>
+
+        <div class="field name-field">
+          <input id="authName" type="text" placeholder=" " autocomplete="name">
+          <label for="authName">Full name</label>
+        </div>
+
+        <div class="field stag" style="--d:.8s">
+          <input id="authEmail" type="email" placeholder=" " autocomplete="email">
+          <label for="authEmail">Email</label>
+        </div>
+
+        <div class="field stag" style="--d:.9s">
+          <input id="authPass" type="password" placeholder=" " autocomplete="current-password">
+          <label for="authPass">Password</label>
+          <button class="eye" id="eyeBtn" type="button" aria-label="Show password">
+            <svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/><path class="slash" d="M4 4l16 16"/></svg>
+          </button>
+        </div>
+
+        <p class="auth-error" id="authError"></p>
+
+        <button class="btn-gold stag" id="authSubmit" style="--d:1s">
+          <span class="btn-text">SIGN IN</span>
+          <span class="spinner"></span>
+        </button>
+        <button class="auth-guest stag" id="guestBtn" style="--d:1.1s">Continue as guest</button>
+      </div>
+    </div>
+  </section>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
